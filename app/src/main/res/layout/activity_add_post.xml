@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".AddPost">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/Red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Add Property"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/open_sans_italic"/>
+
+        <ImageButton
+            android:id="@+id/backArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_24" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="6dp">
+
+        <Button
+            android:id="@+id/select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Property Images" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <!--click here to view previous image-->
+            <ImageView
+                android:id="@+id/previous"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:src="@drawable/skip_previous_24" />
+            <ImageSwitcher
+                android:id="@+id/image"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"/>
+
+            <!--click here to view next image-->
+            <ImageView
+                android:id="@+id/next"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:src="@drawable/skip_next_24" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:padding="2dp"
+                    android:paddingLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/locationicon"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Locations"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/open_sans"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Adding in Karachi"
+                android:paddingLeft="5dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="@font/open_sans"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Pick Location from map"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:background="@drawable/single_line_shap"
+                android:id="@+id/tvAddress"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Property Types"
+            android:textSize="18sp"
+            android:fontFamily="@font/open_sans_regular"
+            android:textColor="@color/black"/>
+
+        <Spinner
+            android:id="@+id/spProperty"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/single_line_shap"/>
+
+        //=====Purpose====
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Purpose"
+            android:textSize="18sp"
+            android:fontFamily="@font/open_sans_regular"
+            android:textColor="@color/black"/>
+
+        <Spinner
+            android:id="@+id/spPurpose"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/single_line_shap"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Property Details"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans_regular"/>
+
+        <EditText
+            android:id="@+id/propertyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Property Title*"
+            android:inputType="text"
+            android:background="@drawable/single_line_shap"
+            android:maxLines="1"
+            android:paddingLeft="10dp"/>
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/propertyDescription"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Property Description*"
+            android:background="@drawable/single_line_shap"
+            android:paddingLeft="10dp"/>
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/propertyBedrooms"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="BedRooms*"
+            android:background="@drawable/single_line_shap"
+            android:paddingLeft="10dp"/>
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/propertyWashrooms"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Washrooms*"
+            android:background="@drawable/single_line_shap"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Area"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans_regular"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/propertyArea"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="40dp"
+                android:hint="Area*"
+                android:background="@drawable/single_line_shap"
+                android:inputType="number"
+                android:paddingLeft="10dp"/>
+
+            <Spinner
+                android:id="@+id/spArea"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Price"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/open_sans_regular"/>
+
+        <EditText
+            android:id="@+id/propertyPrice"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Price*"
+            android:background="@drawable/single_line_shap"
+            android:inputType="number"
+            android:paddingLeft="10dp"/>
+
+
+        //==Contact Details===
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Contact Details"
+            android:textSize="22sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans_regular"/>
+
+        <EditText
+            android:id="@+id/contactName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Name *"
+            android:background="@drawable/single_line_shap"
+            android:inputType="text"
+            android:paddingLeft="10dp"/>
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/contactEmail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Email *"
+            android:background="@drawable/single_line_shap"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp" />
+
+        <EditText
+            android:id="@+id/contactPhoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="Phone No *"
+            android:background="@drawable/single_line_shap"
+            android:inputType="phone"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+
+    //== upload button==
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Upload Now"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/btn_bg"
+            android:onClick="UploadPost"/>
+    </LinearLayout>
+
+</LinearLayout>

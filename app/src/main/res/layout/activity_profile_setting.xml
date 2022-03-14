@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfileSetting">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/Red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Profile Setting"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/open_sans_italic"/>
+
+        <ImageButton
+            android:id="@+id/backArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_24" />
+
+    </RelativeLayout>
+
+    //=====Layout for image and name=====//
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/bgprofile">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:elevation="12dp"
+            android:id="@+id/view2"
+            android:onClick="selectImage"
+            app:cardCornerRadius="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/account_circle_24" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:hint="Name"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:background="@drawable/line_shap"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingFName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:hint="Father Name"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:background="@drawable/line_shap"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingCnic"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:hint="CNIC"
+        android:inputType="phone"
+        android:textColorHint="@color/black"
+        android:background="@drawable/line_shap"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingDOB"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:hint="Date of Birth"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:background="@drawable/line_shap"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/line_shap"
+        android:gravity="center"
+        android:hint="Email"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingPhoneNo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/line_shap"
+        android:gravity="center"
+        android:hint="Phone No"
+        android:inputType="number"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingGender"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/line_shap"
+        android:gravity="center"
+        android:hint="Gender"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/profileSettingAddress"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/line_shap"
+        android:gravity="center"
+        android:hint="Address"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnSettingUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_bg"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
+</LinearLayout>

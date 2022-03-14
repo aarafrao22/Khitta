@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ContactUs">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/tolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/Red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Contact Us"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/open_sans_italic"/>
+
+                <ImageButton
+                    android:id="@+id/backArrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_back_24" />
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ASK US EVERYTHING"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/open_sans"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contactusmsg"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/open_sans"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"/>
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/scrolviewbg">
+
+                <EditText
+                    android:id="@+id/edtName"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:hint="Name:"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black"
+                    android:lines="1"/>
+
+                <EditText
+                    android:id="@+id/edtSubject"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="Subject:"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:lines="1"/>
+
+                <EditText
+                    android:id="@+id/edtEmail"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:hint="Email:"
+                    android:fontFamily="@font/open_sans"
+                    android:lines="1"/>
+
+                <EditText
+                    android:id="@+id/edtMessage"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:hint="Message:"
+                    android:fontFamily="@font/open_sans"
+                    android:lines="6"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSend"
+                android:layout_marginTop="30dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="SEND"
+                android:background="@drawable/btn_bg"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+        <item
+            android:id="@+id/navHome"
+            android:icon="@drawable/home_24"
+            android:title="Home" />
+        <item
+            android:id="@+id/navAdd"
+            android:icon="@drawable/add_circle_24"
+            android:title="Add Property" />
+
+        <item
+            android:id="@+id/navMyProperty"
+            android:icon="@drawable/myproperty"
+            android:title="My Properties" />
+        <item
+            android:id="@+id/navFavorites"
+            android:icon="@drawable/favorite_border_24"
+            android:title="Favorites" />
+
+        <item
+            android:id="@+id/navProfile"
+            android:icon="@drawable/account_circle_24"
+            android:title="Profile" />
+
+        <item
+            android:id="@+id/navAdmin"
+            android:icon="@drawable/account_circle_24"
+            android:title="Admin" />
+
+
+        <item
+            android:id="@+id/navLogOut"
+            android:icon="@drawable/logout"
+            android:title="LogOut"
+            android:visible="true"
+           />
+
+</menu>

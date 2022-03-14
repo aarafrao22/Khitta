@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "833914330418",
+    "project_id": "khitta-36aa6",
+    "storage_bucket": "khitta-36aa6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833914330418:android:55e74e601a61998b6c4b2b",
+        "android_client_info": {
+          "package_name": "com.example.khitta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833914330418-7ehtqknqf7poq3ko2vm2aqunvano5ufb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIacMifyDWhzPRGwFwy_-wsZiFRcqucUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833914330418-7ehtqknqf7poq3ko2vm2aqunvano5ufb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

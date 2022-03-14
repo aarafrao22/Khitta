@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Khitta</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="title_activity_add_property">AddProperty</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="my_api_key">AIzaSyDSNiKN8EqFl9uiSP3E-ZGtJClSxCZCgJg</string>
+    <string name="Message">Hello,I would like to inquire about your property.Please contact me at your earliest convenience.</string>
+    <string name="contactusmsg">We at Khitta.com are open to any and all inquiries and suggestions you may have. The occasional hilarious joke wouldn\'t be entirely amiss either.</string>
+</resources>

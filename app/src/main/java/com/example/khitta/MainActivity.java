@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
     private Toolbar toolbar;
     Context context;
 
-    LinearLayout bottomHome,bottomAdd,bottomFav,bottomProfile,searchBar;
+    LinearLayout searchBar;
 
      FirebaseAuth mAuth;
 //    FirebaseUser firebaseUser=mAuth.getCurrentUser();
@@ -99,20 +99,20 @@ public class MainActivity extends Activity {
 
      //==set nav menu item LogOut text to LogIn Code==//
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        if (user ==null)
-        {
-        Menu menu=mNavigationView.getMenu();
-        MenuItem nav_login=menu.findItem(R.id.navLogOut);
-        nav_login.setTitle("LogIn");
-        }
+//        if (user ==null)
+//        {
+//        Menu menu=mNavigationView.getMenu();
+//        MenuItem nav_login=menu.findItem(R.id.navLogOut);
+//        nav_login.setTitle("LogIn");
+//        }
     }
 
     private void init()
     {
-        bottomHome=findViewById(R.id.bottomHome);
-        bottomAdd=findViewById(R.id.bottomAdd);
-        bottomFav=findViewById(R.id.bottomFavorites);
-        bottomProfile=findViewById(R.id.bottomProfile);
+//        bottomHome=findViewById(R.id.bottomHome);
+//        bottomAdd=findViewById(R.id.bottomAdd);
+//        bottomFav=findViewById(R.id.bottomFavorites);
+//        bottomProfile=findViewById(R.id.bottomProfile);
         btnDrawer=findViewById(R.id.menuIcon);
         searchBar=findViewById(R.id.searchBar);
         tvSearch=findViewById(R.id.tvSearch);
@@ -132,56 +132,54 @@ public class MainActivity extends Activity {
 
         //==========bottom add icon click condition code start from here==========
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        if (user !=null)
-        {
-            bottomAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intentAdd=new Intent(MainActivity.this,AddPost.class);
-                    startActivity(intentAdd);
-                    finish();
-                }
-            });
-        }else
-        {
-            bottomAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intentAdd=new Intent(MainActivity.this,SignUp.class);
-                    startActivity(intentAdd);
-                    finish();
-                }
-            });
-            //==========bottom add icon click condition code end here==========
-        }
-
-
-        bottomProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                if (user !=null)
-                {
-                    Intent intentProfile = new Intent(MainActivity.this, UserProfile.class);
-                    startActivity(intentProfile);
-                    finish();
-                }
-                else
-                    {
-                        Intent intentprofile=new Intent(MainActivity.this,SignUp.class);
-                        startActivity(intentprofile);
-                        finish();
-                    }
-            }
-        });
-
-        bottomFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MyFavorite.class));
-                finish();
-            }
-        });
+//        if (user !=null) {
+//            bottomAdd.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent intentAdd=new Intent(MainActivity.this,AddPost.class);
+//                    startActivity(intentAdd);
+//                    finish();
+//                }
+//            });
+//        }else{
+//            //==========bottom add icon click condition code end here==========
+//        }
+//
+//
+//        bottomProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+//                if (user !=null)
+//                {
+//                    Intent intentProfile = new Intent(MainActivity.this, UserProfile.class);
+//                    startActivity(intentProfile);
+//                    finish();
+//                }
+//                else
+//                {
+//                    Intent intentprofile=new Intent(MainActivity.this,SignUp.class);
+//                    startActivity(intentprofile);
+//                    finish();
+//                }
+//            }
+//        });
+//
+//        bottomFav.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this,MyFavorite.class));
+//                finish();
+//            }
+//        });
+//            bottomAdd.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent intentAdd=new Intent(MainActivity.this,SignUp.class);
+//                    startActivity(intentAdd);
+//                    finish();
+//                }
+//            });
         
         //==search bar coding==//
         tvSearch.setOnClickListener(new View.OnClickListener() {

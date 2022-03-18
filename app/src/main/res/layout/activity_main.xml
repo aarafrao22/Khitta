@@ -82,136 +82,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-        //======bottom items====
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:orientation="horizontal"
-            android:weightSum="4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="wrap_content"
 
-            //====01====
-
-            <LinearLayout
-                android:padding="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/Red">
-
-                <LinearLayout
-                    android:id="@+id/bottomHome"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/Red"
-                    android:orientation="vertical"
-                    android:weightSum="3">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.8"
-                        android:src="@drawable/home_white" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.2"
-                        android:fontFamily="@font/open_sans"
-                        android:gravity="center"
-                        android:text="Home"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-                //====02====
-
-                <LinearLayout
-                    android:id="@+id/bottomAdd"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/Red"
-                    android:orientation="vertical"
-                    android:weightSum="3">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.8"
-                        android:src="@drawable/add_circle_white" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.2"
-                        android:fontFamily="@font/open_sans"
-                        android:gravity="center"
-                        android:text="Add"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-                </LinearLayout>
-                //====03====
-
-                <LinearLayout
-                    android:id="@+id/bottomFavorites"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/Red"
-                    android:orientation="vertical"
-                    android:weightSum="3">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.8"
-                        android:src="@drawable/favorite_border_white" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.2"
-                        android:fontFamily="@font/open_sans"
-                        android:gravity="center"
-                        android:text="Favorites"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-                </LinearLayout>
-                //====04====
-
-                <LinearLayout
-                    android:id="@+id/bottomProfile"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/Red"
-                    android:orientation="vertical"
-                    android:weightSum="3">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.8"
-                        android:src="@drawable/account_circle_white" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.2"
-                        android:fontFamily="@font/open_sans"
-                        android:gravity="center"
-                        android:text="Profile"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -221,6 +96,8 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:itemTextColor="@color/black"
-        app:menu="@menu/navigation_menu"></com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/mainmenu">
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

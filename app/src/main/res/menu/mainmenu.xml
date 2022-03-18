@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottomHome"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/home"
         android:title="home"/>
 
     <item
-        android:id="@+id/bottomFavorites"
-        android:icon="@drawable/ic_baseline_chat_bubble_24"
-        android:title="chat"/>
+        android:id="@+id/bottomAdd"
+        android:icon="@drawable/ic_add"
+        android:title="add"/>
 
     <item
-        android:id="@+id/bottomAdd"
-        android:icon="@drawable/ic_baseline_map_24"
-        android:title="map"/>
+        android:id="@+id/bottomFavorites"
+        android:icon="@drawable/ic_fav"
+        android:title="Saved"/>
 
     <item
         android:id="@+id/bottomProfile"
-        android:icon="@drawable/ic_baseline_person_24"
+        android:icon="@drawable/ic_user"
         android:title="profile"/>
 </menu>

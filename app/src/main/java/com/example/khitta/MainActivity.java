@@ -33,6 +33,8 @@ import android.widget.Toast;
 import com.example.khitta.Adapters.PostsAdapter;
 import com.example.khitta.Models.PostsModel;
 import com.example.khitta.Models.UserInfoModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,48 +59,80 @@ public class MainActivity extends Activity {
 
     LinearLayout searchBar;
 
-     FirebaseAuth mAuth;
-//    FirebaseUser firebaseUser=mAuth.getCurrentUser();
+    FirebaseAuth mAuth;
+    //    FirebaseUser firebaseUser=mAuth.getCurrentUser();
     RecyclerView recyclerView;
     private DatabaseReference myRef;
     FirebaseDatabase firebaseDatabase;
     private ArrayList<PostsModel> myPostsList;
     private PostsAdapter myPostsAapter;
 
-    ImageButton btnDrawer,btnSearch;
+    ImageButton btnDrawer, btnSearch;
     //searchbar items
     TextView tvSearch;
     boolean[] selectedItems;
-    ArrayList<Integer> dayList=new ArrayList<>();
-    String [] dayArray ={"Bed Rooms", "Wash Rooms", "Location", "Price"};
+    ArrayList<Integer> dayList = new ArrayList<>();
+    String[] dayArray = {"Bed Rooms", "Wash Rooms", "Location", "Price"};
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         init();
         GetDataFromFirebase();
-        toolbar=findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.my_drawer_layout);
-        mNavigationView=findViewById(R.id.navigation_view);
+        bottomNavigationView = findViewById(R.id.bottomNav);
+        mNavigationView = findViewById(R.id.navigation_view);
         //setSupportActionBar(toolbar);
 
 
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
 
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(MainActivity.this,drawerLayout,toolbar,R.string.nav_open,R.string.nav_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
 
+        mNavigationView.setNavigationItemSelectedListener(Listener);
 
-     mNavigationView.setNavigationItemSelectedListener(Listener);
 
-     //==set nav menu item LogOut text to LogIn Code==//
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        //==set nav menu item LogOut text to LogIn Code==//
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottomHome:
+                        Toast.makeText(context, "Already Selected", Toast.LENGTH_SHORT).show();
+
+                    case R.id.bottomAdd:
+                        Intent intentAdd = new Intent(MainActivity.this, AddPost.class);
+                        startActivity(intentAdd);
+                        finish();
+                    case R.id.bottomFavorites:
+                        startActivity(new Intent(MainActivity.this, MyFavorite.class));
+                        finish();
+                    case R.id.bottomProfile:
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        if (user != null) {
+                            Intent intentProfile = new Intent(MainActivity.this, UserProfile.class);
+                            startActivity(intentProfile);
+                            finish();
+                        } else {
+                            Intent intentprofile = new Intent(MainActivity.this, SignUp.class);
+                            startActivity(intentprofile);
+                            finish();
+                        }
+                }
+                return false;
+            }
+        });
+
 //        if (user ==null)
 //        {
 //        Menu menu=mNavigationView.getMenu();
@@ -107,31 +141,27 @@ public class MainActivity extends Activity {
 //        }
     }
 
-    private void init()
-    {
+    private void init() {
 //        bottomHome=findViewById(R.id.bottomHome);
 //        bottomAdd=findViewById(R.id.bottomAdd);
 //        bottomFav=findViewById(R.id.bottomFavorites);
 //        bottomProfile=findViewById(R.id.bottomProfile);
-        btnDrawer=findViewById(R.id.menuIcon);
-        searchBar=findViewById(R.id.searchBar);
-        tvSearch=findViewById(R.id.tvSearch);
-        btnSearch=findViewById(R.id.btnSearch);
+        btnDrawer = findViewById(R.id.menuIcon);
+        searchBar = findViewById(R.id.searchBar);
+        tvSearch = findViewById(R.id.tvSearch);
+        btnSearch = findViewById(R.id.btnSearch);
 
-        recyclerView=findViewById(R.id.post_recycler);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(context);
+        recyclerView = findViewById(R.id.post_recycler);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
         //set recyclerview order in reverse to show latest post at the top
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recyclerView.hasFixedSize();
-        myPostsList=new ArrayList<>();
-
-
+        myPostsList = new ArrayList<>();
 
 
         //==========bottom add icon click condition code start from here==========
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
 //        if (user !=null) {
 //            bottomAdd.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -180,7 +210,7 @@ public class MainActivity extends Activity {
 //                    finish();
 //                }
 //            });
-        
+
         //==search bar coding==//
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,71 +248,71 @@ public class MainActivity extends Activity {
         Spinner s5 = view.findViewById(R.id.s5);
 
         Button Popup_search = view.findViewById(R.id.btnSearch);
-        
+
         String currentUserId = mAuth.getCurrentUser().getUid();
-      DatabaseReference myRef1=FirebaseDatabase.getInstance().getReference();
-      myRef1.child("All Property Posts").child("Posts")
+        DatabaseReference myRef1 = FirebaseDatabase.getInstance().getReference();
+        myRef1.child("All Property Posts").child("Posts")
                 .child(currentUserId)
                 .addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Is better to use a List, because you don't know the size
-                // of the iterator returned by dataSnapshot.getChildren() to
-                // initialize the array
-                final List<String> Bedrooms = new ArrayList<String>();
-                final List<String> SqFeetList = new ArrayList<String>();
-                final List<String> PriceList = new ArrayList<String>();
-                final List<String> PropTypeList = new ArrayList<String>();
-                final List<String> LocationList = new ArrayList<String>();
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // Is better to use a List, because you don't know the size
+                        // of the iterator returned by dataSnapshot.getChildren() to
+                        // initialize the array
+                        final List<String> Bedrooms = new ArrayList<String>();
+                        final List<String> SqFeetList = new ArrayList<String>();
+                        final List<String> PriceList = new ArrayList<String>();
+                        final List<String> PropTypeList = new ArrayList<String>();
+                        final List<String> LocationList = new ArrayList<String>();
 
-                for (DataSnapshot mySnapshot: dataSnapshot.getChildren()) {
-                    String propBedrooms = mySnapshot.child("property_bedrooms").getValue(String.class);
-                    Bedrooms.add(propBedrooms);
-                   //2nd list
-                    String sqfeet=mySnapshot.child("property_area").getValue(String.class);
-                    SqFeetList.add(sqfeet);
-                    //3rd list
-                    String Price=mySnapshot.child("property_price").getValue(String.class);
-                    PriceList.add(Price);
+                        for (DataSnapshot mySnapshot : dataSnapshot.getChildren()) {
+                            String propBedrooms = mySnapshot.child("property_bedrooms").getValue(String.class);
+                            Bedrooms.add(propBedrooms);
+                            //2nd list
+                            String sqfeet = mySnapshot.child("property_area").getValue(String.class);
+                            SqFeetList.add(sqfeet);
+                            //3rd list
+                            String Price = mySnapshot.child("property_price").getValue(String.class);
+                            PriceList.add(Price);
 
-                    //4th list
-                    String type=mySnapshot.child("property_type").getValue(String.class);
-                    PropTypeList.add(type);
+                            //4th list
+                            String type = mySnapshot.child("property_type").getValue(String.class);
+                            PropTypeList.add(type);
 
-                    //5th list
-                    String loc=mySnapshot.child("property_location").getValue(String.class);
-                    LocationList.add(loc);
-                }
+                            //5th list
+                            String loc = mySnapshot.child("property_location").getValue(String.class);
+                            LocationList.add(loc);
+                        }
 
-                ArrayAdapter<String> bedroomsAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, Bedrooms);
-                bedroomsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                s1.setAdapter(bedroomsAdapter);
+                        ArrayAdapter<String> bedroomsAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, Bedrooms);
+                        bedroomsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s1.setAdapter(bedroomsAdapter);
 
-                ArrayAdapter<String> sqFeetAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, SqFeetList);
-                sqFeetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                s2.setAdapter(sqFeetAdapter);
+                        ArrayAdapter<String> sqFeetAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, SqFeetList);
+                        sqFeetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s2.setAdapter(sqFeetAdapter);
 
-                //3rd Adapter for price
-                ArrayAdapter<String> priceAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, PriceList);
-                priceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                s3.setAdapter(priceAdapter);
+                        //3rd Adapter for price
+                        ArrayAdapter<String> priceAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, PriceList);
+                        priceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s3.setAdapter(priceAdapter);
 
-                //4th Adapter for price
-                ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, PropTypeList);
-                typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                s4.setAdapter(typeAdapter);
+                        //4th Adapter for price
+                        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, PropTypeList);
+                        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s4.setAdapter(typeAdapter);
 
-                //5th Adapter for price
-                ArrayAdapter<String> locAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, LocationList);
-                locAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                s5.setAdapter(locAdapter);
-            }
+                        //5th Adapter for price
+                        ArrayAdapter<String> locAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, LocationList);
+                        locAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s5.setAdapter(locAdapter);
+                    }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                    }
+                });
         dialogPlus.show();
         //yaha masla hy//=======
 //        Popup_search.setOnClickListener(new View.OnClickListener() {
@@ -296,70 +326,57 @@ public class MainActivity extends Activity {
     //==Search bar coding method END here==//
 
     //========navigation item click listener coding from here============//
-    private NavigationView.OnNavigationItemSelectedListener Listener=new NavigationView.OnNavigationItemSelectedListener() {
+    private NavigationView.OnNavigationItemSelectedListener Listener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             mNavigationView.getMenu().findItem(R.id.navLogOut).setVisible(true);
-            int id=item.getItemId();
+            int id = item.getItemId();
 
-            if (id==R.id.navProfile)
-            {
+            if (id == R.id.navProfile) {
                 FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                if (user !=null)
-                {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
                     startActivity(new Intent(MainActivity.this, UserProfile.class));
                     finish();
-                }else {
+                } else {
                     startActivity(new Intent(MainActivity.this, SignUp.class));
                     finish();
                 }
 
-            }
-            else if (id==R.id.navAdd)
-            {
-                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                if (user !=null)
-                {
-                startActivity(new Intent(MainActivity.this,AddPost.class));
-                finish();
-                }else {
-                    Intent intentAdd=new Intent(MainActivity.this,SignUp.class);
+            } else if (id == R.id.navAdd) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    startActivity(new Intent(MainActivity.this, AddPost.class));
+                    finish();
+                } else {
+                    Intent intentAdd = new Intent(MainActivity.this, SignUp.class);
                     startActivity(intentAdd);
                     finish();
                 }
 
-            }
-            else if (id==R.id.navFavorites)
-            {
-                startActivity(new Intent(MainActivity.this,MyFavorite.class));
+            } else if (id == R.id.navFavorites) {
+                startActivity(new Intent(MainActivity.this, MyFavorite.class));
                 finish();
 
-            }
-            else if (id==R.id.navMyProperty)
-            {
+            } else if (id == R.id.navMyProperty) {
                 FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                if (user !=null)
-                {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
                     startActivity(new Intent(MainActivity.this, MyProperties.class));
                     finish();
-                }else {
+                } else {
                     startActivity(new Intent(MainActivity.this, SignUp.class));
                     finish();
                 }
 
-            }
-            else if (id==R.id.navAdmin){
+            } else if (id == R.id.navAdmin) {
                 startActivity(new Intent(MainActivity.this, AdminHome.class));
                 finish();
-            }
-            else if (id==R.id.navLogOut)
-            {
-               FirebaseAuth.getInstance().signOut();
+            } else if (id == R.id.navLogOut) {
+                FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
                 finish();
-                    Toast.makeText(MainActivity.this,  "Successfully Sign out!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Successfully Sign out!", Toast.LENGTH_SHORT).show();
 
             }
             return true;
@@ -367,23 +384,22 @@ public class MainActivity extends Activity {
     };
 
     //=========getting posts data from firebase database===
-    private void GetDataFromFirebase()
-    {
-        DatabaseReference databaseReference= FirebaseDatabase.getInstance()
+    private void GetDataFromFirebase() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                 .getReference().child("All Property Posts")
                 .child("Posts");
 
         //this line syced the app ofline
-            databaseReference.keepSynced(true);
+        databaseReference.keepSynced(true);
 
-            databaseReference.addChildEventListener(new ChildEventListener() {
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 if (snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                      PostsModel model = ds.getValue(PostsModel.class);
-                       // PostsModel model=new PostsModel();
+                        PostsModel model = ds.getValue(PostsModel.class);
+                        // PostsModel model=new PostsModel();
                         myPostsList.add(model);
                         myPostsAapter = new PostsAdapter(myPostsList, MainActivity.this);
                         myPostsAapter.notifyDataSetChanged();

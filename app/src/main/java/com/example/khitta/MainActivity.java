@@ -230,8 +230,6 @@ public class MainActivity extends Activity {
 
     //==Search bar coding method start from here==//
     private void SearchBarCoding() {
-
-
         final DialogPlus dialogPlus = DialogPlus.newDialog(MainActivity.this)
                 .setContentHolder(new com.orhanobut.dialogplus.ViewHolder(R.layout.search_popup))
                 .setGravity(Gravity.CENTER)

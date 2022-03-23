@@ -114,9 +114,12 @@ public class MainActivity extends Activity {
                         Intent intentAdd = new Intent(MainActivity.this, AddPost.class);
                         startActivity(intentAdd);
                         finish();
+
                     case R.id.bottomFavorites:
-                        startActivity(new Intent(MainActivity.this, MyFavorite.class));
+                        Intent intentFav = new Intent(MainActivity.this, MyFavorite.class);
+                        startActivity(intentFav);
                         finish();
+
                     case R.id.bottomProfile:
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user != null) {
@@ -124,7 +127,7 @@ public class MainActivity extends Activity {
                             startActivity(intentProfile);
                             finish();
                         } else {
-                            Intent intentprofile = new Intent(MainActivity.this, SignUp.class);
+                            Intent intentprofile = new Intent(MainActivity.this, Login.class);
                             startActivity(intentprofile);
                             finish();
                         }

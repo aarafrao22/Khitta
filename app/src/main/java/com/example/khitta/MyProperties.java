@@ -30,8 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MyProperties extends Activity
-{
+public class MyProperties extends Activity{
     RecyclerView MyPropRecycler;
     ArrayList<PostsModel> myPropList;
     MyPropertiesAdapter myPropertiesAdapter;
@@ -63,12 +62,9 @@ public class MyProperties extends Activity
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user !=null){
-        FirebaseRecyclerOptions<MyPropModel> options=
-                new FirebaseRecyclerOptions.Builder<MyPropModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference()
-            .child("All Property Posts").child("Posts")
-            .child(Objects.requireNonNull(user.getUid())),MyPropModel.class)
-                .build();
+            FirebaseRecyclerOptions<MyPropModel> options= new FirebaseRecyclerOptions.Builder<MyPropModel>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("All Property Posts").child("Posts")
+            .child(user.getUid()),MyPropModel.class).build();
 
         myPropertiesAdapter=new MyPropertiesAdapter(options);
         MyPropRecycler.setAdapter(myPropertiesAdapter);

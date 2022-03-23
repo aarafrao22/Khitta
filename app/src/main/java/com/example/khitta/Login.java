@@ -107,7 +107,7 @@ public class Login extends Activity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 if (mAuth.getCurrentUser().isEmailVerified()){
-                                    startActivity(new Intent(Login.this,MainActivity.class));
+                                    startActivity(new Intent(Login.this,UserProfile.class));
                                     finish();
                                 }else {
                                     Toast.makeText(Login.this, "Please verify your email address.", Toast.LENGTH_SHORT).show();
